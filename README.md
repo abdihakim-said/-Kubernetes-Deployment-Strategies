@@ -2,6 +2,9 @@
 # **Enterprise Project: Kubernetes Deployment Strategies on Amazon EKS**
 
 ---
+![argo-rollout](https://github.com/user-attachments/assets/ce623999-118d-4230-8944-9e5ddd3be07d)
+
+
 
 ## **Scenario Overview**
 
