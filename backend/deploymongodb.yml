@@ -30,7 +30,7 @@ spec:
                 values:
                 - large
       containers:
-        - image: mongo   # change the tag to latest/6 for deployment
+        - image: mongo:8.0.8  # change the tag to latest/6 for deployment
           name: mongo           
           args: ["-dbpath","/data/db"]
           ports:
@@ -38,13 +38,13 @@ spec:
           livenessProbe:
             exec:
               command:
-                - mongosh 
+                - mongosh
                 - --eval 
-                - 'db.runCommand("ping").ok'
+                - 'db.adminCommand("ping")'
                 - --quiet
             initialDelaySeconds: 30
             periodSeconds: 10
-            timeoutSeconds: 5
+            timeoutSeconds: 10
             successThreshold: 1
             failureThreshold: 6
           readinessProbe:
@@ -52,11 +52,11 @@ spec:
               command: 
                 - mongosh 
                 - --eval 
-                - 'db.runCommand("ping").ok'
+                - 'db.adminCommand("ping")'
                 - --quiet
             initialDelaySeconds: 30
             periodSeconds: 10
-            timeoutSeconds: 5
+            timeoutSeconds: 10
             successThreshold: 1
             failureThreshold: 6
           env:

@@ -24,8 +24,8 @@ spec:
     spec:
       serviceAccountName: wezvatech-admin
       affinity:
-        podAffinity:     # change to pod Affinity if using minikube
-        #podAntiAffinity:     # change to pod Affinity if using minikube
+        #podAffinity:     # change to pod Affinity if using minikube
+        podAntiAffinity:     # change to pod Affinity if using minikube
           requiredDuringSchedulingIgnoredDuringExecution:
           - labelSelector:
               matchExpressions:
@@ -40,7 +40,7 @@ spec:
         command: ['sh', '-c', "until nslookup mongo-svc.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done"]
       containers:
       - name: canary-demo
-        image: adamtravis/rollouts:blue # you can use the following tags - red, blue, green
+        image: adamtravis/rollouts:red # you can use the following tags - red, blue, green
         imagePullPolicy: Always
         ports:
         - name: http
